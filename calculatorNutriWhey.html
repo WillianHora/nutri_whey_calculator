@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Somando Números</title>
+  </head>
+  <body>
+    <style>
+      body {
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(15, 86, 173);
+        font-family: sans-serif;
+      }
+
+      .base {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .calc {
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 30vw;
+        border-radius: 30px;
+      }
+
+      p {
+        margin: 3px;
+      }
+
+      #btn {
+        margin: 20px;
+        border: none;
+        background-color: rgb(15, 86, 173);
+        height: 30px;
+        width: 90px;
+        color: white;
+        font-family: monospace;
+      }
+      .calc h1 {
+        margin-bottom: 10px;
+        color: rgb(15, 86, 173);
+      }
+
+      .calc input {
+        border-radius: 20px;
+        border: 1px solid black;
+        padding: 5px;
+        padding-left: 8px;
+      }
+
+      #res {
+        margin-bottom: 20px;
+      }
+    </style>
+
+    <div class="base">
+      <div class="calc">
+        <h1>NutriWhey Calculator</h1>
+        <p>Product value</p>
+        <input placeholder="R$" type="number" name="txtn1" id="txtn1" />
+        <p>Discount</p>
+        <input placeholder="%" type="number" name="txtn2" id="txtn2" />
+        <input type="button" value="Calculate" id="btn" />
+        <div id="res"></div>
+      </div>
+    </div>
+
+    <script>
+      var a = window.document.getElementById("btn");
+      a.addEventListener("click", somar);
+      
+      function somar() {
+       var valor = window.document.getElementById("txtn1");
+        var porcentagem = window.document.getElementById("txtn2");
+        res = window.document.getElementById("res");
+        var valor = Number(valor.value);
+        var porcentagem = Number(porcentagem.value);
+        
+        
+        var desconto = porcentagem * valor  / 100;
+        var s = valor - desconto;
+           res.innerHTML = "Valor final do produto: R$" + s.toFixed(2);}
+    </script>
+  </body>
+</html>
