@@ -6,63 +6,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Somando Números</title>
   </head>
-  <body>
-    <style>
-      body {
-        height: 100vh;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgb(15, 86, 173);
-        font-family: sans-serif;
-      }
+  <style>
+    :root {
+      --grey: rgb(49, 49, 49);
+      --azulescuro: rgb(0, 0, 14);
+    }
 
-      .base {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .calc {
-        background-color: rgb(255, 255, 255);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        width: 30vw;
-        border-radius: 30px;
-      }
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--basecolor);
+      font-family: sans-serif;
+      flex-direction: column;
+    }
 
-      p {
-        margin: 3px;
-      }
+    .base {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .calc {
+      background-color: var(--calc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 30vw;
+      border-radius: 30px;
+    }
 
-      #btn {
-        margin: 20px;
-        border: none;
-        background-color: rgb(15, 86, 173);
-        height: 30px;
-        width: 90px;
-        color: white;
-        font-family: monospace;
-      }
-      .calc h1 {
-        margin-bottom: 10px;
-        color: rgb(15, 86, 173);
-      }
+    p {
+      margin: 3px;
+    }
 
-      .calc input {
-        border-radius: 20px;
-        border: 1px solid black;
-        padding: 5px;
-        padding-left: 8px;
-      }
+    #btn {
+      margin: 20px;
+      border: none;
+      background-color: rgb(15, 86, 173);
+      height: 30px;
+      width: 90px;
+      color: white;
+      font-family: monospace;
+    }
+    .calc h1 {
+      margin-bottom: 10px;
+      color: rgb(15, 86, 173);
+    }
 
-      #res {
-        margin-bottom: 20px;
-      }
-    </style>
+    .calc input {
+      border-radius: 20px;
+      border: 1px solid black;
+      padding: 5px;
+      padding-left: 8px;
+    }
 
+    #res {
+      margin-bottom: 20px;
+    }
+    p {
+      color: var(--parag);
+    }
+
+    .light {
+      --basecolor: rgb(15, 86, 173);
+      --calc: white;
+      --btn: black;
+      --parag: black;
+      --btn2: white;
+      --btn3: rgb(255, 255, 255);
+      --btn4: black;
+    }
+
+    .dark {
+      --basecolor: var(--azulescuro);
+      --calc: var(--grey);
+      --parag: white;
+      --btn: rgb(255, 255, 255);
+      --btn2: rgb(0, 0, 0);
+      --btn3: rgb(23, 131, 246);
+      --btn4: rgb(255, 254, 254);
+    }
+    .switch {
+      display: flex;
+      margin-bottom: 10px;
+      height: 30px;
+    }
+
+    .switch button {
+      background-color: var(--btn);
+      color: var(--btn2);
+      border-radius: 20px;
+      cursor: pointer;
+      border: none;
+      width: 100px;
+    }
+    .switch button:hover {
+      background-color: var(--btn3);
+      color: var(--btn4);
+    }
+  </style>
+  <body class="light">
+    <div class="switch">
+      <button id="button" type="button" >Dark</button>
+    </div>
     <div class="base">
       <div class="calc">
         <h1>NutriWhey Calculator</h1>
@@ -76,20 +125,31 @@
     </div>
 
     <script>
+      const change = document.getElementById("button");
       var a = window.document.getElementById("btn");
       a.addEventListener("click", somar);
-      
+      change.addEventListener("click", function () {
+        document.body.classList.toggle("dark");
+
+        var className = document.body.className;
+        if (className == "light") {
+          this.textContent = "Dark";
+        } else {
+          this.textContent = "Light";
+        }
+      });
+
       function somar() {
-       var valor = window.document.getElementById("txtn1");
+        var valor = window.document.getElementById("txtn1");
         var porcentagem = window.document.getElementById("txtn2");
         res = window.document.getElementById("res");
         var valor = Number(valor.value);
         var porcentagem = Number(porcentagem.value);
-        
-        
-        var desconto = porcentagem * valor  / 100;
+
+        var desconto = (porcentagem * valor) / 100;
         var s = valor - desconto;
-           res.innerHTML = "Valor final do produto: R$" + s.toFixed(2);}
+        res.innerHTML = "Valor final do produto: R$" + s.toFixed(2);
+      }
     </script>
   </body>
 </html>
